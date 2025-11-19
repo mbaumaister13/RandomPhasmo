@@ -1,5 +1,4 @@
-import { Component, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { Component } from '@angular/core';
 import { EQUIPMENT, Equipment, ResultingEquipment, Tier } from './const/equipment.const';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatButton } from '@angular/material/button';
@@ -8,7 +7,6 @@ import { MatButton } from '@angular/material/button';
   selector: 'app-root',
   templateUrl: './app.html',
   imports: [
-    NgOptimizedImage,
     MatButtonToggleGroup,
     MatButtonToggle,
     MatButton
@@ -16,8 +14,6 @@ import { MatButton } from '@angular/material/button';
   styleUrl: './app.scss'
 })
 export class App {
-
-  protected readonly title = signal('Phasmo Randomizer');
 
   equipment: Equipment[] = structuredClone(EQUIPMENT);
   randomized = false;
@@ -55,5 +51,6 @@ export class App {
 
   reset() {
     this.randomized = false;
+    this.output = [];
   }
 }

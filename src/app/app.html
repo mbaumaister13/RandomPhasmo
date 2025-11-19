@@ -1,38 +1,44 @@
 <div class="container">
   <div class="header">
-    <img ngSrc="assets/images/Phasmophobia_Logo.webp"
-         [alt]="title()"
-         height="54"
-         width="253"
-         priority>
+    <h1>PHASMOPHOBIA RANDOMIZER</h1>
   </div>
 
   <div class="main-panel">
     <div class="equipment-container">
-      @for (e of equipment; track e.name) {
-        <div class="equipment">
-          <h2>{{ e.name }}</h2>
-          <div class="tiers">
-            <h4>Tiers: </h4>
-            <mat-button-toggle-group multiple>
-              <mat-button-toggle value="t1"
-                                 [checked]="e.selectedTiers.includes(1)"
-                                 (click)="handleTierToggled(e, 1)">
-                Tier 1
-              </mat-button-toggle>
-              <mat-button-toggle value="t2"
-                                 [checked]="e.selectedTiers.includes(2)"
-                                 (click)="handleTierToggled(e, 2)">
-                Tier 2
-              </mat-button-toggle>
-              <mat-button-toggle value="t3"
-                                 [checked]="e.selectedTiers.includes(3)"
-                                 (click)="handleTierToggled(e, 3)">
-                Tier 3
-              </mat-button-toggle>
-            </mat-button-toggle-group>
+      @if (!randomized) {
+        @for (e of equipment; track e.name) {
+          <div class="equipment">
+            <h2>{{ e.name }}</h2>
+            <div class="tiers">
+              <h3>Tiers: </h3>
+              <mat-button-toggle-group multiple>
+                <mat-button-toggle value="t1"
+                                   [checked]="e.selectedTiers.includes(1)"
+                                   (click)="handleTierToggled(e, 1)">
+                  Tier 1
+                </mat-button-toggle>
+                <mat-button-toggle value="t2"
+                                   [checked]="e.selectedTiers.includes(2)"
+                                   (click)="handleTierToggled(e, 2)">
+                  Tier 2
+                </mat-button-toggle>
+                <mat-button-toggle value="t3"
+                                   [checked]="e.selectedTiers.includes(3)"
+                                   (click)="handleTierToggled(e, 3)">
+                  Tier 3
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
           </div>
-        </div>
+        }
+      } @else {
+        @for (o of output; track o.name) {
+          <div class="output">
+            <h2 class="output-name">{{ o.name }}</h2>
+            <h3 class="output-tier">Tier {{ o.tier }}</h3>
+            <h3 class="output-amount">Amount: {{ o.amount }}</h3>
+          </div>
+        }
       }
     </div>
 
