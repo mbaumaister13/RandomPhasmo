@@ -12,6 +12,7 @@ body {
   font-family: Phasmo, serif;
   color: white;
   animation: flicker-color 30s 10s ease-in-out infinite;
+  letter-spacing: 2px;
 }
 
 @keyframes flicker-color {

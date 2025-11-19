@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EQUIPMENT, Equipment, ResultingEquipment, Tier } from './const/equipment.const';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatButton } from '@angular/material/button';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { MatButton } from '@angular/material/button';
   imports: [
     MatButtonToggleGroup,
     MatButtonToggle,
-    MatButton
+    MatButton,
+    NgOptimizedImage
   ],
   styleUrl: './app.scss'
 })
@@ -36,7 +38,8 @@ export class App {
         this.output.push({
           name: item.name,
           tier: item.selectedTiers.at(Math.floor(Math.random() * item.selectedTiers.length)),
-          amount: Math.floor(Math.random() * item.maxAmount)
+          amount: Math.floor(Math.random() * item.maxAmount),
+          imgPath: item.imgPath
         } as ResultingEquipment);
       } else {
         this.output.push({
@@ -45,8 +48,6 @@ export class App {
         } as ResultingEquipment);
       }
     });
-
-    console.log(JSON.stringify(this.output, null, 2));
   }
 
   reset() {

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: black;
+  background-color: darken(#4A414A, 25%);
   height: 100vh;
   overflow: hidden;
 
@@ -43,6 +43,7 @@
         justify-content: start;
         margin-left: 15%;
         margin-right: 15%;
+        height: 64px;
 
         h2 {
           flex: 1 1 auto;
@@ -71,13 +72,22 @@
         justify-content: space-between;
         margin-left: 15%;
         margin-right: 15%;
+        height: 64px;
 
         * {
           width: 32%;
         }
 
         .output-tier {
-          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .output-image {
+            height: 64px;
+            width: 64px;
+            filter: contrast(80%);
+          }
         }
 
         .output-amount {

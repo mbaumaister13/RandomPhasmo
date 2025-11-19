@@ -35,7 +35,14 @@
         @for (o of output; track o.name) {
           <div class="output">
             <h2 class="output-name">{{ o.name }}</h2>
-            <h3 class="output-tier">Tier {{ o.tier }}</h3>
+            <div class="output-tier">
+              <h3>Tier {{ o.tier }}</h3>
+              <img class="output-image"
+                   ngSrc="./assets/images/items/{{ o.imgPath }}/T{{ o.tier }}.webp"
+                   alt="{{ o.name }} Tier {{ o.tier }}"
+                   height="500"
+                   width="500">
+            </div>
             <h3 class="output-amount">Amount: {{ o.amount }}</h3>
           </div>
         }
