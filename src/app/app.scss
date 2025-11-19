@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: black;
+  background-color: darken(#4A414A, 25%);
   height: 100vh;
   overflow: hidden;
 
@@ -11,8 +11,15 @@
     height: 10%;
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
     z-index: 1000;
+
+    h1 {
+      padding-left: 16px;
+      font-size: xxx-large;
+      color: white !important;
+    }
   }
 
   .main-panel {
@@ -26,16 +33,17 @@
     .equipment-container {
       height: 80%;
       width: 100%;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: auto auto;
       overflow-y: auto;
 
       .equipment {
         display: flex;
         align-items: center;
         justify-content: start;
-        margin-left: 30%;
-        margin-right: 30%;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: 64px;
 
         h2 {
           flex: 1 1 auto;
@@ -48,13 +56,42 @@
           justify-content: start;
           flex: 0 1 auto;
 
-          h4 {
+          h3 {
             flex: 1 1 auto;
           }
 
           mat-button-toggle-group {
             flex: 0 1 auto;
           }
+        }
+      }
+
+      .output {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: 64px;
+
+        * {
+          width: 32%;
+        }
+
+        .output-tier {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .output-image {
+            height: 64px;
+            width: 64px;
+            filter: contrast(80%);
+          }
+        }
+
+        .output-amount {
+          text-align: right;
         }
       }
     }
@@ -67,10 +104,11 @@
       button {
         transform: scale(200%);
         margin: 32px;
+        color: white !important;
       }
 
       button.disabled {
-        color: #ffffff55;
+        color: #ffffff55 !important;
       }
     }
   }
