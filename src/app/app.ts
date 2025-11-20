@@ -60,9 +60,17 @@ export class App {
         equipment.currentMaxAmount--;
       }
     }
+
+    if (!equipment.currentMaxAmount) {
+      equipment.selectedTiers = [];
+    }
   }
 
   incrementMax(equipment: Equipment) {
+    if (!equipment.currentMinAmount) {
+      equipment.selectedTiers = [1, 2, 3];
+    }
+
     if (equipment.currentMaxAmount < equipment.maxAmount) {
       equipment.currentMaxAmount++;
     }

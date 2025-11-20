@@ -1,9 +1,11 @@
+@use "sass:color";
+
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: darken(#4A414A, 25%);
+  background-color: color.adjust(#4A414A, $lightness: -25%);
   height: 100vh;
   overflow: hidden;
 
@@ -19,6 +21,8 @@
       padding-left: 16px;
       font-size: xxx-large;
       animation: flicker-color 30s 10s ease-in-out infinite;
+      font-family: Phasmo Title, serif;
+      letter-spacing: 2px;
     }
   }
 
@@ -47,7 +51,7 @@
         height: 64px;
         width: 50%;
 
-        h2 {
+        h1 {
           width: 32%;
         }
 
@@ -68,6 +72,7 @@
               top: 0;
               left: 0;
               margin: 0;
+              z-index: 10000;
             }
 
             h2.green {
@@ -103,7 +108,12 @@
           align-items: center;
           justify-content: start;
 
-          h4 {
+          h2 {
+            font-family: Phasmo Title, serif;
+            letter-spacing: 2px;
+          }
+
+          h3 {
             margin: 0;
           }
 
@@ -139,6 +149,7 @@
           .output-image {
             height: 64px;
             width: 64px;
+            margin-left: 8px;
             filter: contrast(80%);
           }
         }
@@ -153,12 +164,21 @@
       button {
         transform: scale(200%);
         margin: 32px;
+        font-family: Phasmo Title, serif;
+        letter-spacing: 2px;
       }
 
       button.disabled {
         color: #ffffff55;
       }
     }
+  }
+
+  .disclaimer {
+    position: absolute;
+    bottom: 0;
+    z-index: 1000;
+    font-family: "Droid Sans", serif;
   }
 }
 

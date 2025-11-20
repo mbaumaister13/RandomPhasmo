@@ -1,6 +1,12 @@
 @font-face {
-  font-family: 'Phasmo';
+  font-family: 'Phasmo Title';
   src: url('./assets/fonts/October Crow.ttf');
+}
+
+@font-face {
+  font-family: 'Phasmo Normal';
+  src: url('./assets/fonts/Caveat-Regular.ttf');
+  font-weight: 0.5;
 }
 
 html, body {
@@ -9,7 +15,6 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Phasmo, serif;
+  font-family: Phasmo Normal, serif;
   color: white;
-  letter-spacing: 2px;
 }

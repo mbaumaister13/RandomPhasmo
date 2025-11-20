@@ -10,7 +10,8 @@ export default defineConfig([
       '.angular',
       '.idea',
       'node_modules',
-      'jest.config.js'
+      'jest.config.js',
+      'docs'
     ]
   },
   {

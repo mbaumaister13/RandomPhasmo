@@ -8,7 +8,7 @@
       @if (!randomized) {
         @for (e of equipment; track e.name) {
           <div class="equipment">
-            <h2>{{ e.name }}</h2>
+            <h1>{{ e.name }}</h1>
 
             <div class="tiers">
               <div class="tier-container t1" (click)="handleTierToggled(e, 1)">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="amount">
-              <h4>Min Amount</h4>
+              <h3>Min</h3>
               <div class="amount-stepper">
                 <button matIconButton (click)="decrementMin(e)">
                   <mat-icon>remove</mat-icon>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="amount">
-              <h4>Max Amount</h4>
+              <h3>Max</h3>
               <div class="amount-stepper">
                 <button matIconButton (click)="decrementMax(e)">
                   <mat-icon>remove</mat-icon>
@@ -82,11 +82,11 @@
       } @else {
         @for (o of output; track o.name) {
           <div class="output">
-            <h2 class="output-name">{{ o.name }}</h2>
-            <h3 class="output-amount">x{{ o.amount }}</h3>
+            <h1 class="output-name">{{ o.name }}</h1>
+            <h1 class="output-amount">x{{ o.amount }}</h1>
             @if (o.amount > 0) {
               <div class="output-tier">
-                <h3>Tier {{ o.tier }}</h3>
+                <h2>Tier {{ o.tier }}</h2>
                 <img class="output-image"
                      ngSrc="./assets/images/items/{{ o.imgPath }}/T{{ o.tier }}.webp"
                      alt="{{ o.name }} Tier {{ o.tier }}"
@@ -115,6 +115,8 @@
       </button>
     </div>
   </div>
+
+  <h5 class="disclaimer">All content, images, and media sourced from Phasmophobia belongs to Kinetic Games.</h5>
 </div>
 
 <!-- The following code was taken from https://codepen.io/Ravyre/pen/gXawyY -->
