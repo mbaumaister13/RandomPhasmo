@@ -4,17 +4,21 @@
   </div>
 
   <div class="main-panel">
-    <div class="equipment-container">
+    <div class="equipment-container" #equipmentContainer>
       @if (!randomized) {
         @for (e of equipment; track e.name) {
           <div class="equipment">
             <h2>{{ e.name }}</h2>
+
             <div class="tiers">
               <div class="tier-container t1" (click)="handleTierToggled(e, 1)">
                 @if (e.selectedTiers.includes(1)) {
-                  <h1>&#10003;</h1>
+                  <h2 class="green">&#10003;</h2>
+                } @else {
+                  <h2 class="red">&#128711;</h2>
                 }
                 <img class="output-image"
+                     [class.not-selected]="!e.selectedTiers.includes(1)"
                      ngSrc="./assets/images/items/{{ e.imgPath }}/T1.webp"
                      alt="{{ e.name }} Tier 1"
                      height="500"
@@ -22,9 +26,12 @@
               </div>
               <div class="tier-container t2" (click)="handleTierToggled(e, 2)">
                 @if (e.selectedTiers.includes(2)) {
-                  <h1>&#10003;</h1>
+                  <h2 class="green">&#10003;</h2>
+                } @else {
+                  <h2 class="red">&#128711;</h2>
                 }
                 <img class="output-image"
+                     [class.not-selected]="!e.selectedTiers.includes(2)"
                      ngSrc="./assets/images/items/{{ e.imgPath }}/T2.webp"
                      alt="{{ e.name }} Tier 2"
                      height="500"
@@ -32,13 +39,42 @@
               </div>
               <div class="tier-container t3" (click)="handleTierToggled(e, 3)">
                 @if (e.selectedTiers.includes(3)) {
-                  <h1>&#10003;</h1>
+                  <h2 class="green">&#10003;</h2>
+                } @else {
+                  <h2 class="red">&#128711;</h2>
                 }
                 <img class="output-image"
+                     [class.not-selected]="!e.selectedTiers.includes(3)"
                      ngSrc="./assets/images/items/{{ e.imgPath }}/T3.webp"
                      alt="{{ e.name }} Tier 3"
                      height="500"
                      width="500">
+              </div>
+            </div>
+
+            <div class="amount">
+              <h4>Min Amount</h4>
+              <div class="amount-stepper">
+                <button matIconButton (click)="decrementMin(e)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <h2>{{ e.currentMinAmount }}</h2>
+                <button matIconButton (click)="incrementMin(e)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+
+            <div class="amount">
+              <h4>Max Amount</h4>
+              <div class="amount-stepper">
+                <button matIconButton (click)="decrementMax(e)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <h2>{{ e.currentMaxAmount }}</h2>
+                <button matIconButton (click)="incrementMax(e)">
+                  <mat-icon>add</mat-icon>
+                </button>
               </div>
             </div>
           </div>
@@ -47,15 +83,17 @@
         @for (o of output; track o.name) {
           <div class="output">
             <h2 class="output-name">{{ o.name }}</h2>
-            <div class="output-tier">
-              <h3>Tier {{ o.tier }}</h3>
-              <img class="output-image"
-                   ngSrc="./assets/images/items/{{ o.imgPath }}/T{{ o.tier }}.webp"
-                   alt="{{ o.name }} Tier {{ o.tier }}"
-                   height="500"
-                   width="500">
-            </div>
-            <h3 class="output-amount">Amount: {{ o.amount }}</h3>
+            <h3 class="output-amount">x{{ o.amount }}</h3>
+            @if (o.amount > 0) {
+              <div class="output-tier">
+                <h3>Tier {{ o.tier }}</h3>
+                <img class="output-image"
+                     ngSrc="./assets/images/items/{{ o.imgPath }}/T{{ o.tier }}.webp"
+                     alt="{{ o.name }} Tier {{ o.tier }}"
+                     height="500"
+                     width="500">
+              </div>
+            }
           </div>
         }
       }
