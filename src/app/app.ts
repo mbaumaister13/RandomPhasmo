@@ -1,21 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { EQUIPMENT, Equipment, ResultingEquipment, Tier } from './const/equipment.const';
-import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { NgOptimizedImage } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   imports: [
-    MatButtonToggleGroup,
-    MatButtonToggle,
     MatButton,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatIconButton,
+    MatIcon
   ],
   styleUrl: './app.scss'
 })
 export class App {
+
+  @ViewChild('equipmentContainer')
+  equipmentContainer?: ElementRef;
 
   equipment: Equipment[] = structuredClone(EQUIPMENT);
   randomized = false;
@@ -31,14 +34,49 @@ export class App {
     }
   }
 
+  decrementMin(equipment: Equipment) {
+    if (equipment.currentMinAmount > equipment.minAmount) {
+      equipment.currentMinAmount--;
+    }
+  }
+
+  incrementMin(equipment: Equipment) {
+    if (equipment.currentMinAmount < equipment.currentMaxAmount) {
+      equipment.currentMinAmount++;
+    } else {
+      if (equipment.currentMaxAmount < equipment.maxAmount) {
+        equipment.currentMinAmount++;
+        equipment.currentMaxAmount++;
+      }
+    }
+  }
+
+  decrementMax(equipment: Equipment) {
+    if (equipment.currentMaxAmount > equipment.currentMinAmount) {
+      equipment.currentMaxAmount--;
+    } else {
+      if (equipment.currentMinAmount > equipment.minAmount) {
+        equipment.currentMinAmount--;
+        equipment.currentMaxAmount--;
+      }
+    }
+  }
+
+  incrementMax(equipment: Equipment) {
+    if (equipment.currentMaxAmount < equipment.maxAmount) {
+      equipment.currentMaxAmount++;
+    }
+  }
+
   randomize() {
     this.randomized = true;
+
     this.equipment.forEach((item) => {
-      if (item.selectedTiers.length) {
+      if (item.selectedTiers.length && item.currentMaxAmount > 0) {
         this.output.push({
           name: item.name,
           tier: item.selectedTiers.at(Math.floor(Math.random() * item.selectedTiers.length)),
-          amount: Math.floor(Math.random() * item.maxAmount),
+          amount: Math.floor(Math.random() * (item.currentMaxAmount - item.currentMinAmount) + item.currentMinAmount),
           imgPath: item.imgPath
         } as ResultingEquipment);
       } else {
@@ -48,10 +86,18 @@ export class App {
         } as ResultingEquipment);
       }
     });
+
+    if (this.equipmentContainer?.nativeElement) {
+      this.equipmentContainer.nativeElement.scrollTop = 0;
+    }
   }
 
   reset() {
     this.randomized = false;
     this.output = [];
+
+    if (this.equipmentContainer?.nativeElement) {
+      this.equipmentContainer.nativeElement.scrollTop = 0;
+    }
   }
 }

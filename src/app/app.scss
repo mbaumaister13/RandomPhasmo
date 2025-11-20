@@ -13,12 +13,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 10000;
 
     h1 {
       padding-left: 16px;
       font-size: xxx-large;
-      color: white !important;
+      animation: flicker-color 30s 10s ease-in-out infinite;
     }
   }
 
@@ -28,33 +28,34 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    z-index: 999;
+    z-index: 1;
 
     .equipment-container {
       height: 80%;
       width: 100%;
-      display: grid;
-      grid-template-columns: auto auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
       overflow-y: auto;
 
       .equipment {
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: space-between;
         margin-left: 15%;
         margin-right: 15%;
         height: 64px;
+        width: 50%;
 
         h2 {
-          flex: 1 1 auto;
+          width: 32%;
         }
 
         .tiers {
-          width: 320px;
+          width: 32%;
           display: flex;
           align-items: center;
           justify-content: start;
-          flex: 0 1 auto;
 
           .tier-container {
             position: relative;
@@ -62,17 +63,30 @@
             width: 64px;
             display: flex;
 
-            h1 {
+            h2 {
               position: absolute;
               top: 0;
               left: 0;
               margin: 0;
-              color: green;
+            }
+
+            h2.green {
+              color: limegreen;
+            }
+
+            h2.red {
+              color: red;
             }
 
             img {
               height: 64px;
               width: 64px;
+              filter: contrast(80%);
+            }
+
+            .not-selected {
+              filter: grayscale(1);
+              z-index: -1;
             }
           }
 
@@ -80,34 +94,53 @@
             cursor: pointer;
           }
         }
+
+        .amount {
+          height: 64px;
+          width: 96px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: start;
+
+          h4 {
+            margin: 0;
+          }
+
+          .amount-stepper {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
       }
 
       .output {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: start;
         margin-left: 15%;
         margin-right: 15%;
         height: 64px;
+        width: 25%;
 
-        * {
-          width: 32%;
+        .output-amount {
+          flex: 1 1 auto;
+          margin-left: 8px;
         }
 
         .output-tier {
           display: flex;
           align-items: center;
           justify-content: center;
+          flex: 0 1 auto;
 
           .output-image {
             height: 64px;
             width: 64px;
             filter: contrast(80%);
           }
-        }
-
-        .output-amount {
-          text-align: right;
         }
       }
     }
@@ -120,13 +153,72 @@
       button {
         transform: scale(200%);
         margin: 32px;
-        color: white !important;
       }
 
       button.disabled {
-        color: #ffffff55 !important;
+        color: #ffffff55;
       }
     }
+  }
+}
+
+@keyframes flicker-color {
+  0%, 6%, 50%, 57% {
+    color: white;
+  }
+  2% {
+    color: #ffffffcc;
+  }
+  2.5% {
+    color: #ffffff99;
+  }
+  3.25% {
+    color: #ffffff77;
+  }
+  3.75% {
+    color: #ffffff99;
+  }
+  4% {
+    color: #ffffffee;
+  }
+  4.25% {
+    color: #ffffffaa;
+  }
+  4.5% {
+    color: #ffffffbb;
+  }
+  5% {
+    color: #ffffff88;
+  }
+  5.25% {
+    color: #ffffffbb;
+  }
+  50.5% {
+    color: #ffffffcc;
+  }
+  51% {
+    color: #ffffff99;
+  }
+  51.5% {
+    color: #ffffffee;
+  }
+  52.5% {
+    color: #ffffff99;
+  }
+  53% {
+    color: #ffffffdd;
+  }
+  54% {
+    color: #ffffffaa;
+  }
+  55% {
+    color: #ffffffbb;
+  }
+  55.5% {
+    color: #ffffff66;
+  }
+  56% {
+    color: #ffffffbb;
   }
 }
 
