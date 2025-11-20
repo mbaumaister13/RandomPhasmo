@@ -4,12 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
-    "build": "ng build --base-href /RandomPhasmo/",
+    "build": "ng build --base-href /RandomPhasmo/ && cp CNAME docs/CNAME",
     "watch": "ng build --watch --configuration development",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "test": "jest",
-    "deploy": "ng deploy --cname=random-phasmo.com"
+    "test": "jest"
   },
   "private": true,
   "dependencies": {
