@@ -15,6 +15,7 @@ export interface ResultingEquipment {
   name: string;
   tier?: Tier;
   amount: number;
+  maxAmount: number;
   imgPath: string;
 }
 
