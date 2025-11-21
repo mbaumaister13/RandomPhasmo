@@ -11,7 +11,9 @@
             <h1>{{ e.name }}</h1>
 
             <div class="tiers">
-              <div class="tier-container t1" (click)="handleTierToggled(e, 1)">
+              <div class="tier-container t1"
+                   [class.locked]="e.locked && e.selectedTiers.includes(1)"
+                   (click)="handleTierToggled(e, 1)">
                 @if (e.selectedTiers.includes(1)) {
                   @if (e.locked) {
                     <h2>&#128274;</h2>
@@ -28,7 +30,9 @@
                      height="500"
                      width="500">
               </div>
-              <div class="tier-container t2" (click)="handleTierToggled(e, 2)">
+              <div class="tier-container t2"
+                   [class.locked]="e.locked && e.selectedTiers.includes(2)"
+                   (click)="handleTierToggled(e, 2)">
                 @if (e.selectedTiers.includes(2)) {
                   @if (e.locked) {
                     <h2>&#128274;</h2>
@@ -45,7 +49,9 @@
                      height="500"
                      width="500">
               </div>
-              <div class="tier-container t3" (click)="handleTierToggled(e, 3)">
+              <div class="tier-container t3"
+                   [class.locked]="e.locked && e.selectedTiers.includes(3)"
+                   (click)="handleTierToggled(e, 3)">
                 @if (e.selectedTiers.includes(3)) {
                   @if (e.locked) {
                     <h2>&#128274;</h2>
@@ -68,11 +74,17 @@
               <div class="amount">
                 <h3>Min</h3>
                 <div class="amount-stepper">
-                  <button matIconButton (click)="decrementMin(e)">
+                  <button matIconButton
+                          [class.disabled]="e.currentMinAmount === e.minAmount"
+                          [disabled]="e.currentMinAmount === e.minAmount"
+                          (click)="decrementMin(e)">
                     <mat-icon>remove</mat-icon>
                   </button>
                   <h2>{{ e.currentMinAmount }}</h2>
-                  <button matIconButton (click)="incrementMin(e)">
+                  <button matIconButton
+                          [class.disabled]="e.currentMinAmount === e.maxAmount"
+                          [disabled]="e.currentMinAmount === e.maxAmount"
+                          (click)="incrementMin(e)">
                     <mat-icon>add</mat-icon>
                   </button>
                 </div>
@@ -81,11 +93,17 @@
               <div class="amount">
                 <h3>Max</h3>
                 <div class="amount-stepper">
-                  <button matIconButton (click)="decrementMax(e)">
+                  <button matIconButton
+                          [class.disabled]="e.currentMaxAmount === e.minAmount"
+                          [disabled]="e.currentMaxAmount === e.minAmount"
+                          (click)="decrementMax(e)">
                     <mat-icon>remove</mat-icon>
                   </button>
                   <h2>{{ e.currentMaxAmount }}</h2>
-                  <button matIconButton (click)="incrementMax(e)">
+                  <button matIconButton
+                          [class.disabled]="e.currentMaxAmount === e.maxAmount"
+                          [disabled]="e.currentMaxAmount === e.maxAmount"
+                          (click)="incrementMax(e)">
                     <mat-icon>add</mat-icon>
                   </button>
                 </div>

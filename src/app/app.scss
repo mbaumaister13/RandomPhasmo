@@ -98,6 +98,10 @@
           .tier-container:hover {
             cursor: pointer;
           }
+
+          .tier-container.locked {
+            cursor: not-allowed;
+          }
         }
 
         .amount-container {
@@ -207,10 +211,6 @@
         font-family: Phasmo Title, serif;
         letter-spacing: 2px;
       }
-
-      button.disabled {
-        color: #FFFFFF55;
-      }
     }
   }
 
@@ -219,6 +219,10 @@
     bottom: 0;
     z-index: 1000;
     font-family: 'Droid Sans', serif;
+  }
+
+  button.disabled {
+    color: #FFFFFF55;
   }
 }
 
