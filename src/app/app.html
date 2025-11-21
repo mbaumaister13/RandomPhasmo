@@ -98,10 +98,8 @@
           <div class="output"
                [class.none]="!o.amount">
             <h1 class="output-name">{{ o.name }}</h1>
-            <h1 class="output-amount">x{{ o.amount }}</h1>
             @if (o.amount > 0) {
               <div class="output-tier">
-                <h2>Tier {{ o.tier }}</h2>
                 <img class="output-image"
                      ngSrc="./assets/images/items/{{ o.imgPath }}/T{{ o.tier }}.webp"
                      alt="{{ o.name }} Tier {{ o.tier }}"
@@ -109,6 +107,15 @@
                      width="500">
               </div>
             }
+            <div class="output-amount">
+              @for (_num of [].constructor(o.maxAmount); let i = $index; track i) {
+                @if (i < o.amount) {
+                  <h1 class="tier-{{o.tier}}">&#9670;</h1>
+                } @else {
+                  <h1 class="none">&#11049;</h1>
+                }
+              }
+            </div>
           </div>
         }
       }

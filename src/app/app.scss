@@ -140,9 +140,8 @@
         height: 64px;
         width: 33%;
 
-        .output-amount {
+        h1 {
           flex: 1 1 auto;
-          margin-left: 8px;
         }
 
         .output-tier {
@@ -158,9 +157,36 @@
             filter: contrast(80%);
           }
         }
+
+        .output-amount {
+          flex: 0 1 auto;
+          margin-left: 8px;
+          width: 128px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+
+          h1 {
+            max-width: 32px;
+            width: 32px;
+            text-align: center;
+          }
+
+          h1.tier-2 {
+            mask: url('../assets/images/t2-mask.png'), linear-gradient(0, #000, #000);
+            mask-size: 37px;
+            mask-composite: exclude;
+          }
+
+          h1.tier-3 {
+            mask: url('../assets/images/t3-mask.png'), linear-gradient(0, #000, #000);
+            mask-size: 33px;
+            mask-composite: exclude;
+          }
+        }
       }
 
-      .output.none {
+      .none {
         color: #ffffff66;
       }
 
@@ -238,8 +264,10 @@
       height: 72px !important;
       width: 80% !important;
 
-      h1 {
-        font-size: medium !important;
+      .output-amount {
+        h1 {
+          font-size: xx-large !important;
+        }
       }
 
       .output-image {

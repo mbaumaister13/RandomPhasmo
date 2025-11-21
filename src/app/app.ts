@@ -110,12 +110,14 @@ export class App {
           name: item.name,
           tier: item.selectedTiers.at(Math.floor(Math.random() * item.selectedTiers.length)),
           amount: Math.floor(Math.random() * (item.currentMaxAmount - item.currentMinAmount) + item.currentMinAmount),
+          maxAmount: item.maxAmount,
           imgPath: item.imgPath
         } as ResultingEquipment);
       } else {
         this.output.push({
           name: item.name,
-          amount: 0
+          amount: 0,
+          maxAmount: item.maxAmount
         } as ResultingEquipment);
       }
     });
