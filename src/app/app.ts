@@ -28,19 +28,38 @@ export class App {
   handleTierToggled(equipment: Equipment, tier: Tier) {
     const index = equipment.selectedTiers?.findIndex(t => t === tier)
     if (index !== -1) {
+      if (equipment.locked) {
+        return;
+      }
       equipment.selectedTiers.splice(index, 1);
+
+      if (equipment.currentMinAmount > 0 && equipment.selectedTiers.length === 1) {
+        equipment.locked = true;
+      }
     } else {
       equipment.selectedTiers.push(tier);
+
+      if (equipment.currentMinAmount > 0 && equipment.selectedTiers.length > 1) {
+        equipment.locked = false;
+      }
     }
   }
 
   decrementMin(equipment: Equipment) {
     if (equipment.currentMinAmount > equipment.minAmount) {
       equipment.currentMinAmount--;
+
+      if (!equipment.currentMinAmount) {
+        equipment.locked = false;
+      }
     }
   }
 
   incrementMin(equipment: Equipment) {
+    if (!equipment.currentMinAmount && !equipment.selectedTiers.length) {
+      equipment.selectedTiers = [1, 2, 3];
+    }
+
     if (equipment.currentMinAmount < equipment.currentMaxAmount) {
       equipment.currentMinAmount++;
     } else {
@@ -48,6 +67,10 @@ export class App {
         equipment.currentMinAmount++;
         equipment.currentMaxAmount++;
       }
+    }
+
+    if (equipment.currentMinAmount && equipment.selectedTiers.length === 1) {
+      equipment.locked = true;
     }
   }
 
@@ -58,6 +81,7 @@ export class App {
       if (equipment.currentMinAmount > equipment.minAmount) {
         equipment.currentMinAmount--;
         equipment.currentMaxAmount--;
+
       }
     }
 
@@ -69,6 +93,7 @@ export class App {
   incrementMax(equipment: Equipment) {
     if (!equipment.currentMinAmount) {
       equipment.selectedTiers = [1, 2, 3];
+      equipment.locked = false;
     }
 
     if (equipment.currentMaxAmount < equipment.maxAmount) {

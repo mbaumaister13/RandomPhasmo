@@ -13,7 +13,11 @@
             <div class="tiers">
               <div class="tier-container t1" (click)="handleTierToggled(e, 1)">
                 @if (e.selectedTiers.includes(1)) {
-                  <h2 class="green">&#10003;</h2>
+                  @if (e.locked) {
+                    <h2>&#128274;</h2>
+                  } @else {
+                    <h2 class="green">&#10003;</h2>
+                  }
                 } @else {
                   <h2 class="red">&#128711;</h2>
                 }
@@ -26,7 +30,11 @@
               </div>
               <div class="tier-container t2" (click)="handleTierToggled(e, 2)">
                 @if (e.selectedTiers.includes(2)) {
-                  <h2 class="green">&#10003;</h2>
+                  @if (e.locked) {
+                    <h2>&#128274;</h2>
+                  } @else {
+                    <h2 class="green">&#10003;</h2>
+                  }
                 } @else {
                   <h2 class="red">&#128711;</h2>
                 }
@@ -39,7 +47,11 @@
               </div>
               <div class="tier-container t3" (click)="handleTierToggled(e, 3)">
                 @if (e.selectedTiers.includes(3)) {
-                  <h2 class="green">&#10003;</h2>
+                  @if (e.locked) {
+                    <h2>&#128274;</h2>
+                  } @else {
+                    <h2 class="green">&#10003;</h2>
+                  }
                 } @else {
                   <h2 class="red">&#128711;</h2>
                 }
@@ -83,7 +95,8 @@
         }
       } @else {
         @for (o of output; track o.name) {
-          <div class="output">
+          <div class="output"
+               [class.none]="!o.amount">
             <h1 class="output-name">{{ o.name }}</h1>
             <h1 class="output-amount">x{{ o.amount }}</h1>
             @if (o.amount > 0) {
