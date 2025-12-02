@@ -6,6 +6,8 @@
   <div class="main-panel">
     <div class="equipment-container" #equipmentContainer>
       @if (!randomized) {
+        <mat-checkbox (change)="handleObjectiveToggled($event.checked)">Ensure all objectives completable?</mat-checkbox>
+
         @for (e of equipment; track e.name) {
           <div class="equipment">
             <h1>{{ e.name }}</h1>

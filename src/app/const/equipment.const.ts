@@ -231,3 +231,5 @@ export const EQUIPMENT: Equipment[] = [
     locked: false
   }
 ]
+
+export const REQUIRED_EQUIPMENT = ['Photo Camera', 'Sound Recorder', 'Motion Sensor', 'Crucifix', 'Igniter', 'Incense', 'Firelight', 'Parabolic Microphone'];
