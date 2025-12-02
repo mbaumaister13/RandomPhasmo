@@ -4,9 +4,13 @@
   </div>
 
   <div class="main-panel">
+    <img class="orb" ngSrc="./assets/images/GhostOrb_Sprite.png" alt="" height="24" width="24">
+
     <div class="equipment-container" #equipmentContainer>
       @if (!randomized) {
-        <mat-checkbox (change)="handleObjectiveToggled($event.checked)">Ensure all objectives completable?</mat-checkbox>
+        <mat-checkbox (change)="handleObjectiveToggled($event.checked)">
+          Ensure all objectives completable?
+        </mat-checkbox>
 
         @for (e of equipment; track e.name) {
           <div class="equipment">
