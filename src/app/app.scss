@@ -42,6 +42,10 @@
       flex-direction: column;
       overflow-y: auto;
 
+      mat-checkbox {
+        font-size: larger;
+      }
+
       .equipment {
         display: flex;
         align-items: center;
@@ -204,6 +208,7 @@
       display: flex;
       align-items: center;
       margin-top: 32px;
+      padding-bottom: 16px;
 
       button {
         transform: scale(200%);
@@ -219,6 +224,8 @@
     bottom: 0;
     z-index: 1000;
     font-family: 'Droid Sans', serif;
+    text-align: center;
+    margin: 0 32px 16px;
   }
 
   button.disabled {
@@ -237,6 +244,10 @@
 
   .equipment-container {
     align-items: center !important;
+
+    mat-checkbox {
+      font-size: medium !important;
+    }
 
     .equipment {
       align-items: center !important;
@@ -283,7 +294,6 @@
   .button-group {
     height: 10% !important;
     margin-top: 0 !important;
-    padding-bottom: 16px !important;
 
     button {
       transform: scale(100%) !important;
@@ -293,7 +303,6 @@
 
   .disclaimer {
     font-size: x-small !important;
-    text-align: center;
     margin: 0 32px 8px !important;
   }
 }

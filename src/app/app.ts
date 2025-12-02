@@ -1,8 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { EQUIPMENT, Equipment, ResultingEquipment, Tier } from './const/equipment.const';
+import { EQUIPMENT, Equipment, REQUIRED_EQUIPMENT, ResultingEquipment, Tier } from './const/equipment.const';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { NgOptimizedImage } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { MatIcon } from '@angular/material/icon';
     MatButton,
     NgOptimizedImage,
     MatIconButton,
-    MatIcon
+    MatIcon,
+    MatCheckbox
   ],
   styleUrl: './app.scss'
 })
@@ -24,6 +26,37 @@ export class App {
   randomized = false;
 
   output: ResultingEquipment[] = [];
+
+  handleObjectiveToggled(enabled: boolean) {
+    if (enabled) {
+      REQUIRED_EQUIPMENT.forEach((item) => {
+        const foundEquipment = this.equipment.find(e => e.name === item);
+        if (foundEquipment) {
+          foundEquipment.minAmount = 1;
+          if (!foundEquipment.currentMinAmount) {
+            foundEquipment.currentMinAmount = 1;
+          }
+          if (foundEquipment.currentMaxAmount && foundEquipment.selectedTiers.length === 1) {
+            foundEquipment.locked = true;
+          }
+          if (!foundEquipment.currentMaxAmount) {
+            foundEquipment.currentMaxAmount = 1;
+            foundEquipment.selectedTiers = [1, 2, 3];
+          }
+        }
+      });
+    } else {
+      REQUIRED_EQUIPMENT.forEach((item) => {
+        const foundEquipment = this.equipment.find(e => e.name === item);
+        if (foundEquipment) {
+          foundEquipment.minAmount = 0;
+          if (foundEquipment.selectedTiers.length > 1) {
+            foundEquipment.locked = false;
+          }
+        }
+      });
+    }
+  }
 
   handleTierToggled(equipment: Equipment, tier: Tier) {
     const index = equipment.selectedTiers?.findIndex(t => t === tier)
@@ -87,6 +120,7 @@ export class App {
 
     if (!equipment.currentMaxAmount) {
       equipment.selectedTiers = [];
+      equipment.locked = false;
     }
   }
 
