@@ -19,7 +19,7 @@
 
     h1 {
       padding-left: 16px;
-      font-size: xxx-large;
+      font-size: 7vh;
       animation: flicker-color 30s 10s ease-in-out infinite;
       font-family: Phasmo Title, serif;
       letter-spacing: 2px;
@@ -52,7 +52,7 @@
       overflow-y: auto;
 
       mat-checkbox {
-        font-size: larger;
+        font-size: x-large;
       }
 
       .equipment {
@@ -243,6 +243,10 @@
 }
 
 @media only screen and (orientation: portrait) {
+  .header h1 {
+    font-size: xx-large !important;
+  }
+
   h1 {
     font-size: large !important;
   }
@@ -255,7 +259,7 @@
     align-items: center !important;
 
     mat-checkbox {
-      font-size: medium !important;
+      font-size: large !important;
     }
 
     .equipment {
@@ -305,7 +309,7 @@
     margin-top: 0 !important;
 
     button {
-      transform: scale(100%) !important;
+      transform: scale(150%) !important;
       margin: 32px 16px !important;
     }
   }
