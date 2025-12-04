@@ -23,6 +23,7 @@
       animation: flicker-color 30s 10s ease-in-out infinite;
       font-family: Phasmo Title, serif;
       letter-spacing: 2px;
+      cursor: default;
     }
   }
 
@@ -132,6 +133,7 @@
             h2 {
               font-family: Phasmo Title, serif;
               letter-spacing: 2px;
+              cursor: default;
             }
 
             h3 {
@@ -187,6 +189,7 @@
             max-width: 32px;
             width: 32px;
             text-align: center;
+            cursor: default;
           }
 
           h1.tier-2 {
