@@ -100,11 +100,12 @@
             img {
               height: 64px;
               width: 64px;
-              filter: contrast(80%);
+              filter: brightness(1.5) saturate(1.5);
             }
 
             .not-selected {
               filter: grayscale(1);
+              opacity: 50%;
               z-index: -1;
             }
           }
@@ -121,6 +122,7 @@
         .amount-container {
           display: flex;
           align-items: center;
+          width: 192px;
 
           .amount {
             height: 64px;
@@ -153,54 +155,67 @@
       .output {
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: space-between;
         margin-left: 15%;
         margin-right: 15%;
-        height: 64px;
-        width: 33%;
+        height: 72px;
+        width: 50%;
 
         h1 {
-          flex: 1 1 auto;
+          width: 32%;
         }
 
-        .output-tier {
+        .tiers {
+          width: 32%;
           display: flex;
           align-items: center;
-          justify-content: center;
-          flex: 0 1 auto;
+          justify-content: start;
 
-          .output-image {
+          .tier-container {
+            position: relative;
             height: 64px;
             width: 64px;
-            margin-left: 8px;
-            filter: contrast(80%);
+            display: flex;
+
+            img {
+              height: 64px;
+              width: 64px;
+              filter: brightness(1.5) saturate(1.5);
+            }
+
+            .not-selected {
+              filter: grayscale(1);
+              opacity: 10%;
+            }
           }
         }
 
         .output-amount {
           flex: 0 1 auto;
-          margin-left: 8px;
-          width: 128px;
+          width: 192px;
+          height: 64px;
           display: flex;
           align-items: center;
           justify-content: start;
 
           h1 {
-            max-width: 32px;
-            width: 32px;
+            max-width: 48px;
+            width: 48px;
             text-align: center;
             cursor: default;
           }
 
           h1.tier-2 {
             mask: url('../assets/images/t2-mask.png'), linear-gradient(0, #000, #000);
-            mask-size: 37px;
+            mask-position: center;
+            mask-size: 70%;
             mask-composite: exclude;
           }
 
           h1.tier-3 {
             mask: url('../assets/images/t3-mask.png'), linear-gradient(0, #000, #000);
-            mask-size: 33px;
+            mask-position: center;
+            mask-size: 60%;
             mask-composite: exclude;
           }
         }
@@ -243,6 +258,10 @@
   button.disabled {
     color: #FFFFFF55;
   }
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @media only screen and (orientation: portrait) {
@@ -289,20 +308,33 @@
     }
 
     .output {
+      align-items: center !important;
+      justify-content: start !important;
+      flex-direction: column !important;
       margin-left: 5% !important;
       margin-right: 5% !important;
-      min-height: 72px !important;
-      height: 72px !important;
-      width: 80% !important;
+      height: unset !important;
+
+      h1 {
+        text-align: center !important;
+        width: unset !important;
+      }
 
       .output-amount {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+
         h1 {
           font-size: xx-large !important;
+          text-align: center !important;
+          width: 48px !important;
+          max-width: 48px !important;
         }
       }
 
-      .output-image {
-        margin-left: 0 !important;
+      .tiers {
+        width: unset !important;
       }
     }
   }
