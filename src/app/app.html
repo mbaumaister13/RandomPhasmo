@@ -7,11 +7,10 @@
     <img class="orb" ngSrc="./assets/images/GhostOrb_Sprite.png" alt="" height="24" width="24">
 
     <div class="equipment-container" #equipmentContainer>
+      <mat-checkbox [class.hidden]="randomized" (change)="handleObjectiveToggled($event.checked)">
+        Ensure all objectives completable?
+      </mat-checkbox>
       @if (!randomized) {
-        <mat-checkbox (change)="handleObjectiveToggled($event.checked)">
-          Ensure all objectives completable?
-        </mat-checkbox>
-
         @for (e of equipment; track e.name) {
           <div class="equipment">
             <h1>{{ e.name }}</h1>
@@ -122,15 +121,32 @@
           <div class="output"
                [class.none]="!o.amount">
             <h1 class="output-name">{{ o.name }}</h1>
-            @if (o.amount > 0) {
-              <div class="output-tier">
+            <div class="tiers">
+              <div class="tier-container t1">
                 <img class="output-image"
-                     ngSrc="./assets/images/items/{{ o.imgPath }}/T{{ o.tier }}.webp"
-                     alt="{{ o.name }} Tier {{ o.tier }}"
+                     [class.not-selected]="o.tier !== 1 || !o.amount"
+                     ngSrc="./assets/images/items/{{ o.imgPath }}/T1.webp"
+                     alt="{{ o.name }} Tier 1"
                      height="500"
                      width="500">
               </div>
-            }
+              <div class="tier-container t2">
+                <img class="output-image"
+                     [class.not-selected]="o.tier !== 2 || !o.amount"
+                     ngSrc="./assets/images/items/{{ o.imgPath }}/T2.webp"
+                     alt="{{ o.name }} Tier 2"
+                     height="500"
+                     width="500">
+              </div>
+              <div class="tier-container t3">
+                <img class="output-image"
+                     [class.not-selected]="o.tier !== 3 || !o.amount"
+                     ngSrc="./assets/images/items/{{ o.imgPath }}/T3.webp"
+                     alt="{{ o.name }} Tier 3"
+                     height="500"
+                     width="500">
+              </div>
+            </div>
             <div class="output-amount">
               @for (_num of [].constructor(o.maxAmount); let i = $index; track i) {
                 @if (i < o.amount) {
