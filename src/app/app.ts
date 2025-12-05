@@ -151,7 +151,8 @@ export class App {
         this.output.push({
           name: item.name,
           amount: 0,
-          maxAmount: item.maxAmount
+          maxAmount: item.maxAmount,
+          imgPath: item.imgPath
         } as ResultingEquipment);
       }
     });
